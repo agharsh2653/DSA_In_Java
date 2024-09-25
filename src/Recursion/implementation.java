@@ -1,11 +1,11 @@
 package Recursion;
-import java.util.*;
+
 public class implementation {
     public static void main(String[] args) {
         recursion(5);
     }
 
-    static int recursion(int num){
+    static void recursion(int num){
         double square = Math.pow(num,2);
         System.out.format("%.0f",square);
         System.out.println();
@@ -13,7 +13,7 @@ public class implementation {
         if(num==5){
             System.out.format("%.0f",square);
             System.out.println();
-            return 0;
+            return;
         }
         else{
             //recursive call
@@ -22,6 +22,5 @@ public class implementation {
             System.out.format("%.0f",square);
             System.out.println();
         }
-         return 0;
     }
 }
