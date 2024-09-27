@@ -1,6 +1,7 @@
 package Recursion.Backtracking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class maze {
     public static void main(String[] args) {
@@ -20,6 +21,8 @@ public class maze {
         };
         pathRestriction("",board,0,0);
         addAllPath("",board2,0,0);
+        int[][] path = new int[board2.length][board2[0].length];
+        addAllPathPrint("",board2,0,0,path,1);
     }
 
     static int count(int r, int c){
@@ -126,6 +129,40 @@ public class maze {
         //this line is where the function will be over
         //so before the function gets  removed, also remove the changes that were made by that function
         maze[r][c]=true;
+    }
+
+    static void addAllPathPrint(String p,boolean[][] maze, int r, int c, int[][] path, int step){
+        if(r== maze.length-1 && c==maze[0].length-1){
+            System.out.println(p);
+            for(int[] arr: path) {
+                System.out.println(Arrays.toString(arr));
+            }
+            return;
+        }
+
+        if(!maze[r][c]){
+            return;
+        }
+
+        // i am considering this black in my path
+        maze[r][c]=false;
+        path[r][c] =step;
+        if(r<maze.length-1){
+            addAllPathPrint(p+"D",maze,r+1,c,path,step+1);
+        }
+        if(c<maze[0].length-1){
+            addAllPathPrint(p+"R",maze,r,c+1,path,step+1);
+        }
+        if(r>0){
+            addAllPathPrint(p+"U",maze,r-1,c,path,step+1);
+        }
+        if(c>0){
+            addAllPathPrint(p+"L",maze,r,c-1,path,step+1);
+        }
+        //this line is where the function will be over
+        //so before the function gets  removed, also remove the changes that were made by that function
+        maze[r][c]=true;
+        path[r][c]=0;
     }
 
 }
